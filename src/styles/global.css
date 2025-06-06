@@ -1,0 +1,17 @@
+.root-content {
+    max-width: 30rem !important;
+}
+
+.header-icon {
+    width: 5rem;
+    margin-left: 1rem;
+    margin-right: 0rem;
+}
+
+.navbar-icon {
+    width: 2rem;
+}
+
+.display-img {
+    width: 100%;
+}
