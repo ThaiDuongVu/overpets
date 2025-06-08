@@ -75,7 +75,7 @@ const Pets = () => {
     );
   };
 
-  const pettPerPage = 16;
+  const petPerPage = 16;
   const [currentPage, setCurrentPage] = useState(0);
   const paginationDisplay = () => {
     return (
