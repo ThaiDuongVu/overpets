@@ -12,9 +12,10 @@ const Home = () => {
       <NavBar activePage="home" />
       <Header />
       <br />
-      <div className="container root-content">
+      <div className="container">
         <div className="row">
           <div className="col">
+            {/* TODO: Show a few random images */}
           </div>
         </div>
       </div>
