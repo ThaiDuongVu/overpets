@@ -26,7 +26,7 @@
     {
         "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/5.png",
         "type": "cat",
-        "hero": "soldier: 76",
+        "hero": "soldier 76",
         "id": "5"
     },
     {
@@ -265,7 +265,7 @@
     },
     {
         "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/45.png",
-        "type": "cat",
+        "type": "dog",
         "hero": "ana",
         "id": "45"
     },

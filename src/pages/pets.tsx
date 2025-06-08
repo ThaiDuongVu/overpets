@@ -4,6 +4,7 @@ import RootLayout from "@/components/layout";
 import Spinner from "@/components/spinner";
 import Toast from "@/components/toast";
 import { showToast } from "@/helper";
+import Image from "next/image";
 
 interface Pet {
   img: string,
@@ -25,18 +26,43 @@ const Pets = () => {
     setIsMobile(window.matchMedia("(max-width: 767px)").matches);
   }, []);
 
+  // Data
   const [pets, setPets] = useState([]);
+  const [filteredPets, setFilteredPets] = useState([]);
+  const [slicedPets, setSlicedPets] = useState([]);
+
+  // Pagination
+  const petPerPage = 16;
+  const [currentPage, setCurrentPage] = useState(0);
   const rowSize = 4;
   const [petRows, setPetRows] = useState([[]]);
+
+  // Filters
+  const [petTypeFilter, setPetTypeFilter] = useState("all");
+  const [heroFilter, setHeroFilter] = useState("all");
+
   useEffect(() => {
     fetch("./data.json")
       .then(response => response.json())
       .then(data => {
         setPets(data);
-        // Split into rows of 4
+
+        setFilteredPets(pets);
+        // Filter pet type
+        if (petTypeFilter != "all")
+          setFilteredPets(filteredPets.filter((pet: Pet) => pet.type === petTypeFilter));
+
+        // Filter hero
+        if (heroFilter != "all")
+          setFilteredPets(filteredPets.filter((pet: Pet) => pet.hero === heroFilter));
+
+        // Split filtered data into rows
         let rows = []
-        for (let i = 0; i < pets.length; i += rowSize) {
-          rows.push(pets.slice(i, i + rowSize));
+        const start = currentPage * petPerPage;
+        const end = start + petPerPage;
+        setSlicedPets(filteredPets.slice(start, end));
+        for (let i = 0; i < slicedPets.length; i += rowSize) {
+          rows.push(slicedPets.slice(i, i + rowSize));
         };
         setPetRows(rows);
       });
@@ -75,18 +101,18 @@ const Pets = () => {
     );
   };
 
-  const petPerPage = 16;
-  const [currentPage, setCurrentPage] = useState(0);
   const paginationDisplay = () => {
+    const firstPage = 0;
+    const lastPage = 5;
     return (
       <nav aria-label="Pagination navigation">
         <ul className="pagination justify-content-center">
           {/* First page */}
           <li className="page-item">
-            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage)}>Previous</button>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage > firstPage ? currentPage - 1 : currentPage)}>Previous</button>
           </li>
           <li className="page-item">
-            <button type="button" className="page-link" aria-label="0" onClick={() => setCurrentPage(0)}><span aria-hidden="true">&laquo;</span>
+            <button type="button" className="page-link" aria-label={firstPage.toString()} onClick={() => setCurrentPage(firstPage)}><span aria-hidden="true">&laquo;</span>
             </button>
           </li>
 
@@ -94,18 +120,57 @@ const Pets = () => {
           <li className={`page-item ${currentPage === 0 ? "active" : ""}`}>
             <button type="button" className="page-link" onClick={() => setCurrentPage(0)} >1</button>
           </li>
-          
+          <li className={`page-item ${currentPage === 1 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(1)} >2</button>
+          </li>
+          <li className={`page-item ${currentPage === 2 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(2)} >3</button>
+          </li>
+          <li className={`page-item ${currentPage === 3 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(3)} >4</button>
+          </li>
+          <li className={`page-item ${currentPage === 4 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(4)} >5</button>
+          </li>
+          <li className={`page-item ${currentPage === 5 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(5)} >6</button>
+          </li>
+
           {/* Last page */}
           <li className="page-item">
-            <button type="button" className="page-link" aria-label="13" onClick={() => setCurrentPage(0)}><span aria-hidden="true">&raquo;</span>
+            <button type="button" className="page-link" aria-label={lastPage.toString()} onClick={() => setCurrentPage(lastPage)}><span aria-hidden="true">&raquo;</span>
             </button>
           </li>
           <li className="page-item">
-            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage < 13 ? currentPage + 1 : currentPage)} >Next</button>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage < lastPage ? currentPage + 1 : currentPage)} >Next</button>
           </li>
         </ul>
       </nav>
     )
+  };
+
+  const getPetsAsGrid = () => {
+    if (pets.length === 0) return <Spinner />
+
+    return (
+      petRows.map((row, index) => {
+        return (
+          <div className="card-group" key={index}>
+            {row.map(pet => petCard(pet))}
+          </div>
+
+          // <div key={index}>
+          //   <div className="row">
+          //     <div className="col">{petCard(row[0])}</div>
+          //     <div className="col">{petCard(row[1])}</div>
+          //     <div className="col">{petCard(row[2])}</div>
+          //     <div className="col">{petCard(row[3])}</div>
+          //   </div>
+          //   <br />
+          // </div>
+        )
+      })
+    );
   };
 
   return (
@@ -119,34 +184,89 @@ const Pets = () => {
         </div>
         <br />
 
-        {/* Pet Display */}
-        {
-          pets.length == 0
-            ?
-            <Spinner />
-            :
-            petRows.map((row, index) => {
-              return (
-                <div className="card-group" key={index}>
-                  {row.map(pet => petCard(pet))}
-                </div>
+        <div className="row">
+          <div className="col text-center">
+            <div className="dropdown">
+              <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pet Type <i className="bi bi-emoji-smile-fill"></i>
+              </button>
+              <ul className="dropdown-menu">
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("all") }}>All <i className="bi bi-eye-fill"></i></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("cat") }}>Cat</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("chicken") }}>Chicken</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("dog") }}>Dog</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("ferret") }}>Ferret</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("hamster") }}>Hamster</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("hedgehog") }}>Hedgehog</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("horse") }}>Horse</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("lizzard") }}>Lizzard</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("rabbit") }}>Rabbit</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("turtle") }}>Turtle</button></li>
+              </ul>
+            </div>
+          </div>
+          <div className="col text-center">
+            <div className="dropdown">
+              <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hero <i className="bi bi-person-fill"></i>
+              </button>
+              <ul className="dropdown-menu">
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("all") }}>All <i className="bi bi-eye-fill"></i></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ana") }}>Ana <Image src="/heroes/ana.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ashe") }}>Ashe <Image src="/heroes/ashe.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("baptiste") }}>Baptiste <Image src="/heroes/baptiste.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("bastion") }}>Bastion <Image src="/heroes/bastion.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("brigitte") }}>Brigitte <Image src="/heroes/brigitte.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("cassidy") }}>Cassidy <Image src="/heroes/cassidy.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("doomfist") }}>Doomfist <Image src="/heroes/doomfist.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("dva") }}>Dva <Image src="/heroes/dva.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("echo") }}>Echo <Image src="/heroes/echo.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("freja") }}>Freja <Image src="/heroes/freja.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("genji") }}>Genji <Image src="/heroes/genji.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("hanzo") }}>Hanzo <Image src="/heroes/hanzo.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("hazard") }}>Hazard <Image src="/heroes/hazard.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("illari") }}>Illari <Image src="/heroes/illari.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("junker queen") }}>Junker Queen <Image src="/heroes/junker queen.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("junkrat") }}>Junkrat <Image src="/heroes/junkrat.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("juno") }}>Juno <Image src="/heroes/juno.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("kiriko") }}>Kiriko <Image src="/heroes/kiriko.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("lifeweaver") }}>Lifeweaver <Image src="/heroes/lifeweaver.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("lucio") }}>Lucio <Image src="/heroes/lucio.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mauga") }}>Mauga <Image src="/heroes/mauga.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mei") }}>Mei <Image src="/heroes/mei.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mercy") }}>Mercy <Image src="/heroes/mercy.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("moira") }}>Moira <Image src="/heroes/moira.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("orisa") }}>Orisa <Image src="/heroes/orisa.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("pharah") }}>Pharah <Image src="/heroes/pharah.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ramattra") }}>Ramattra <Image src="/heroes/ramattra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("reaper") }}>Reaper <Image src="/heroes/reaper.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("reinhardt") }}>Reinhardt <Image src="/heroes/reinhardt.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("roadhog") }}>Roadhog <Image src="/heroes/roadhog.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sigma") }}>Sigma <Image src="/heroes/sigma.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sojourn") }}>Sojourn <Image src="/heroes/sojourn.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("soldier 76") }}>Soldier 76 <Image src="/heroes/soldier 76.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sombra") }}>Sombra <Image src="/heroes/sombra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("symmetra") }}>Symmetra <Image src="/heroes/symmetra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("torbjorn") }}>Torbjorn <Image src="/heroes/torbjorn.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("tracer") }}>Tracer <Image src="/heroes/tracer.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("venture") }}>Venture <Image src="/heroes/venture.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("widowmaker") }}>Widowmaker <Image src="/heroes/widowmaker.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("winston") }}>Winston <Image src="/heroes/winston.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("wrecking ball") }}>Wrecking Ball <Image src="/heroes/wrecking ball.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("zarya") }}>Zarya <Image src="/heroes/zarya.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("zenyatta") }}>Zenyatta <Image src="/heroes/zenyatta.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br />
 
-                // <div key={index}>
-                //   <div className="row">
-                //     <div className="col">{petCard(row[0])}</div>
-                //     <div className="col">{petCard(row[1])}</div>
-                //     <div className="col">{petCard(row[2])}</div>
-                //     <div className="col">{petCard(row[3])}</div>
-                //   </div>
-                //   <br />
-                // </div>
-              )
-            })
-        }
+        {/* Pet Display */}
+        {getPetsAsGrid()}
         <br />
 
         {/* Pagination */}
-        {/* {paginationDisplay()} */}
+        {paginationDisplay()}
 
       </div>
       <Toast id="addToast" header="Added" message="Added to favorites!" />
