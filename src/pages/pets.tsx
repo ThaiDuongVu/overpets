@@ -1,8 +1,7 @@
 import NavBar from "@/components/navbar";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RootLayout from "@/components/layout";
 import Spinner from "@/components/spinner";
-import Image from "next/image";
 import Toast from "@/components/toast";
 import { showToast } from "@/helper";
 
@@ -76,6 +75,39 @@ const Pets = () => {
     );
   };
 
+  const pettPerPage = 16;
+  const [currentPage, setCurrentPage] = useState(0);
+  const paginationDisplay = () => {
+    return (
+      <nav aria-label="Pagination navigation">
+        <ul className="pagination justify-content-center">
+          {/* First page */}
+          <li className="page-item">
+            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage > 0 ? currentPage - 1 : currentPage)}>Previous</button>
+          </li>
+          <li className="page-item">
+            <button type="button" className="page-link" aria-label="0" onClick={() => setCurrentPage(0)}><span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+
+          {/* Numbered pages */}
+          <li className={`page-item ${currentPage === 0 ? "active" : ""}`}>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(0)} >1</button>
+          </li>
+          
+          {/* Last page */}
+          <li className="page-item">
+            <button type="button" className="page-link" aria-label="13" onClick={() => setCurrentPage(0)}><span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+          <li className="page-item">
+            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage < 13 ? currentPage + 1 : currentPage)} >Next</button>
+          </li>
+        </ul>
+      </nav>
+    )
+  };
+
   return (
     <RootLayout>
       <NavBar activePage="text-try" />
@@ -85,7 +117,9 @@ const Pets = () => {
         <div className="row">
           <h4 className="text-center">Pets</h4>
         </div>
+        <br />
 
+        {/* Pet Display */}
         {
           pets.length == 0
             ?
@@ -109,6 +143,11 @@ const Pets = () => {
               )
             })
         }
+        <br />
+
+        {/* Pagination */}
+        {/* {paginationDisplay()} */}
+
       </div>
       <Toast id="addToast" header="Added" message="Added to favorites!" />
     </RootLayout>

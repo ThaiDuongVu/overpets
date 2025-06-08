@@ -25,10 +25,13 @@ const NavBar = ({ activePage }: { activePage: string }) => {
                 Home <i className="bi bi-house-fill"></i>
               </Link>
               <Link className={`nav-link ${activePage == "pets" ? "active" : ""}`} href="/pets">
-                Pets <i className="bi bi-heart-fill"></i>
+                Pets <i className="bi bi-emoji-smile-fill"></i>
               </Link>
               <Link className={`nav-link ${activePage == "how-to" ? "active" : ""}`} href="/how-to">
                 How-to <i className="bi bi-book-fill"></i>
+              </Link>
+              <Link className={`nav-link ${activePage == "favorites" ? "active" : ""}`} href="/favorites">
+                Favorites <i className="bi bi-heart-fill"></i>
               </Link>
             </div>
             {/* End content */}
