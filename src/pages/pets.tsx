@@ -103,7 +103,9 @@ const Pets = () => {
 
   const paginationDisplay = () => {
     const firstPage = 0;
-    const lastPage = 5;
+    const lastPage = 9;
+    const pages = [];
+    for (let i = 0; i < lastPage; i++) pages.push(i)
     return (
       <nav aria-label="Pagination navigation">
         <ul className="pagination justify-content-center">
@@ -117,24 +119,15 @@ const Pets = () => {
           </li>
 
           {/* Numbered pages */}
-          <li className={`page-item ${currentPage === 0 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(0)} >1</button>
-          </li>
-          <li className={`page-item ${currentPage === 1 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(1)} >2</button>
-          </li>
-          <li className={`page-item ${currentPage === 2 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(2)} >3</button>
-          </li>
-          <li className={`page-item ${currentPage === 3 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(3)} >4</button>
-          </li>
-          <li className={`page-item ${currentPage === 4 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(4)} >5</button>
-          </li>
-          <li className={`page-item ${currentPage === 5 ? "active" : ""}`}>
-            <button type="button" className="page-link" onClick={() => setCurrentPage(5)} >6</button>
-          </li>
+          {
+            pages.map((page) => {
+              return (
+                <li className={`page-item ${currentPage === page ? "active" : ""}`}>
+                  <button type="button" className="page-link" onClick={() => setCurrentPage(page)} >{`${page + 1}`}</button>
+                </li>
+              )
+            })
+          }
 
           {/* Last page */}
           <li className="page-item">
