@@ -10,7 +10,7 @@ const HowTo = () => {
 
   return (
     <RootLayout>
-      <NavBar activePage="text-try" />
+      <NavBar activePage="how-to" />
       <br />
       <div className="container">
         {/* Header */}

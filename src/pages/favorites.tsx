@@ -10,7 +10,7 @@ const Favorites = () => {
 
   return (
     <RootLayout>
-      <NavBar activePage="text-try" />
+      <NavBar activePage="favorites" />
       <br />
       <div className="container">
         {/* Header */}

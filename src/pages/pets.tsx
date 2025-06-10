@@ -5,13 +5,7 @@ import Spinner from "@/components/spinner";
 import Toast from "@/components/toast";
 import { showToast } from "@/helper";
 import Image from "next/image";
-
-interface Pet {
-  img: string,
-  type: string,
-  hero: string,
-  id: string
-}
+import { Pet } from "@/pet";
 
 const Pets = () => {
   let bootstrap: NodeJS.Require;
@@ -41,6 +35,7 @@ const Pets = () => {
   const [petTypeFilter, setPetTypeFilter] = useState("all");
   const [heroFilter, setHeroFilter] = useState("all");
 
+  // Fetch & proccess pet data
   useEffect(() => {
     fetch("./data.json")
       .then(response => response.json())
@@ -74,19 +69,19 @@ const Pets = () => {
 
   const petCard = (pet: Pet) => {
     if (!pet) return (
-      <div></div>
+      <Spinner />
     );
 
     return (
-      <div className="card" key={pet.id}>
-        <img src={pet.img} className="card-img-top" alt="Pet" />
+      <div className="card border mb-2" key={pet.id}>
+        <img src={pet.img} className="card-img-top border bg-info-subtle" alt="Pet" />
         <div className="card-body">
           <h5 className="card-title text-capitalize">{pet.type}</h5>
           <p className="card-text text-capitalize">{pet.hero}</p>
           <a
             type="button"
             className="btn btn-primary pe-4 ps-4 me-2"
-            href={pet.img} download={true}
+            href={pet.img} download={true} target="_blank"
             title="Download">
             <i className="bi bi-download"></i>
           </a>
@@ -122,7 +117,7 @@ const Pets = () => {
           {
             pages.map((page) => {
               return (
-                <li className={`page-item ${currentPage === page ? "active" : ""}`}>
+                <li className={`page-item ${currentPage === page ? "active" : ""}`} key={page}>
                   <button type="button" className="page-link" onClick={() => setCurrentPage(page)} >{`${page + 1}`}</button>
                 </li>
               )
@@ -151,16 +146,6 @@ const Pets = () => {
           <div className="card-group" key={index}>
             {row.map(pet => petCard(pet))}
           </div>
-
-          // <div key={index}>
-          //   <div className="row">
-          //     <div className="col">{petCard(row[0])}</div>
-          //     <div className="col">{petCard(row[1])}</div>
-          //     <div className="col">{petCard(row[2])}</div>
-          //     <div className="col">{petCard(row[3])}</div>
-          //   </div>
-          //   <br />
-          // </div>
         )
       })
     );
@@ -168,16 +153,16 @@ const Pets = () => {
 
   return (
     <RootLayout>
-      <NavBar activePage="text-try" />
+      <NavBar activePage="pets" />
       <br />
       <div className="container">
         {/* Header */}
         <div className="row">
           <h4 className="text-center">Pets</h4>
         </div>
-        <br />
 
         <div className="row">
+          {/* Filters */}
           <div className="col text-center">
             <div className="dropdown">
               <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

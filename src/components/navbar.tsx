@@ -27,6 +27,9 @@ const NavBar = ({ activePage }: { activePage: string }) => {
               <Link className={`nav-link ${activePage == "pets" ? "active" : ""}`} href="/pets">
                 Pets <i className="bi bi-emoji-smile-fill"></i>
               </Link>
+              <Link className={`nav-link ${activePage == "random" ? "active" : ""}`} href="/random">
+                Random <i className="bi bi-shuffle"></i>
+              </Link>
               <Link className={`nav-link ${activePage == "how-to" ? "active" : ""}`} href="/how-to">
                 How-to <i className="bi bi-book-fill"></i>
               </Link>

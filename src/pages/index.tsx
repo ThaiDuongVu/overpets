@@ -4,11 +4,13 @@ import NavBar from "@/components/navbar";
 import Header from "@/components/header";
 import RootLayout from "@/components/layout";
 import Image from "next/image";
-import { randomInteger } from "@/helper";
+import { randomInt } from "@/helper";
 // import Link from "next/link";
 // import { useState, useEffect } from "react";
 
 const Home = () => {
+  const imgIndex = [0, 1, 2, 3];
+
   return (
     <RootLayout>
       <NavBar activePage="home" />
@@ -22,16 +24,15 @@ const Home = () => {
         </div>
         <hr />
         <div className="row">
-          <div className="col">
-            <Image src={`/data/${randomInteger(1, 90)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded" />
-          </div>
-          <div className="col">
-            <Image src={`/data/${randomInteger(1, 90)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded" />
-          </div><div className="col">
-            <Image src={`/data/${randomInteger(1, 90)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded" />
-          </div><div className="col">
-            <Image src={`/data/${randomInteger(1, 90)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded" />
-          </div>
+          {
+            imgIndex.map((index) => {
+              return (
+                <div className="col" key={index}>
+                  <Image src={`/data/${randomInt(1, 136)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded border bg-info-subtle" />
+                </div>
+              );
+            })
+          }
         </div>
         <hr />
         <div className="row">

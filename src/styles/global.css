@@ -1,5 +1,5 @@
 .root-content {
-    max-width: 30rem !important;
+    max-width: 25rem !important;
 }
 
 .header-icon {
@@ -14,4 +14,10 @@
 
 .display-img {
     width: 100%;
+}
+
+.dropdown-menu {
+  overflow: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 400px);
 }
