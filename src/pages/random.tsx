@@ -40,8 +40,8 @@ const Random = () => {
     );
 
     return (
-      <div className="card border" key={pet.id}>
-        <img src={pet.img} className="card-img-top border bg-info-subtle" alt="Pet" />
+      <div className="card" key={pet.id}>
+        <img src={pet.img} className="card-img-top border-bottom bg-info-subtle" alt="Pet" />
         <div className="card-body">
           <h5 className="card-title text-capitalize">{pet.type}</h5>
           <p className="card-text text-capitalize">{pet.hero}</p>

@@ -73,8 +73,8 @@ const Pets = () => {
     );
 
     return (
-      <div className="card border mb-2" key={pet.id}>
-        <img src={pet.img} className="card-img-top border bg-info-subtle" alt="Pet" />
+      <div className="card mb-2" key={pet.id}>
+        <img src={pet.img} className="card-img-top border-bottom bg-info-subtle" alt="Pet" />
         <div className="card-body">
           <h5 className="card-title text-capitalize">{pet.type}</h5>
           <p className="card-text text-capitalize">{pet.hero}</p>
@@ -100,7 +100,8 @@ const Pets = () => {
     const firstPage = 0;
     const lastPage = 9;
     const pages = [];
-    for (let i = 0; i < lastPage; i++) pages.push(i)
+    for (let i = 0; i < lastPage; i++) pages.push(i);
+
     return (
       <nav aria-label="Pagination navigation">
         <ul className="pagination justify-content-center">
@@ -126,11 +127,11 @@ const Pets = () => {
 
           {/* Last page */}
           <li className="page-item">
-            <button type="button" className="page-link" aria-label={lastPage.toString()} onClick={() => setCurrentPage(lastPage)}><span aria-hidden="true">&raquo;</span>
+            <button type="button" className="page-link" aria-label={lastPage.toString()} onClick={() => setCurrentPage(lastPage - 1)}><span aria-hidden="true">&raquo;</span>
             </button>
           </li>
           <li className="page-item">
-            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage < lastPage ? currentPage + 1 : currentPage)} >Next</button>
+            <button type="button" className="page-link" onClick={() => setCurrentPage(currentPage < lastPage - 1 ? currentPage + 1 : currentPage)} >Next</button>
           </li>
         </ul>
       </nav>

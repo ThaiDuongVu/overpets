@@ -5,7 +5,7 @@ import Image from "next/image";
 const NavBar = ({ activePage }: { activePage: string }) => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+      <nav className="navbar navbar-expand-lg bg-primary sticky-top">
         <div className="container-fluid">
           {/* Brand */}
           <Link className="navbar-brand" href="/" aria-label="brand">
