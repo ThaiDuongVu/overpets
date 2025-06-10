@@ -392,7 +392,7 @@
     {
         "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/66.png",
         "type": "cat",
-        "hero": "tracer",
+        "hero": "widowmaker tracer",
         "id": "66"
     },
     {
@@ -482,7 +482,7 @@
     {
         "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/81.png",
         "type": "cat",
-        "hero": "ana",
+        "hero": "ana pharah",
         "id": "81"
     },
     {
@@ -538,5 +538,281 @@
         "type": "cat",
         "hero": "ana",
         "id": "90"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/91.png",
+        "type": "dog",
+        "hero": "widowmaker",
+        "id": "91"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/92.png",
+        "type": "guinea pig",
+        "hero": "cassidy",
+        "id": "92"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/93.png",
+        "type": "cat",
+        "hero": "sigma",
+        "id": "93"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/94.png",
+        "type": "cat",
+        "hero": "cassidy",
+        "id": "94"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/95.png",
+        "type": "cat",
+        "hero": "ashe",
+        "id": "95"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/96.png",
+        "type": "dog",
+        "hero": "soldier 76",
+        "id": "96"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/97.png",
+        "type": "dog",
+        "hero": "mauga",
+        "id": "97"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/98.png",
+        "type": "dog",
+        "hero": "kiriko",
+        "id": "98"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/99.png",
+        "type": "cat",
+        "hero": "wrecking ball",
+        "id": "99"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/100.png",
+        "type": "dog",
+        "hero": "sombra",
+        "id": "100"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/101.png",
+        "type": "cat",
+        "hero": "reinhardt ana",
+        "id": "101"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/102.png",
+        "type": "cat",
+        "hero": "ana",
+        "id": "102"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/103.png",
+        "type": "hamster",
+        "hero": "widowmaker",
+        "id": "103"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/104.png",
+        "type": "cat",
+        "hero": "mercy",
+        "id": "104"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/105.png",
+        "type": "cat",
+        "hero": "ramattra",
+        "id": "105"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/106.png",
+        "type": "dog",
+        "hero": "cassidy",
+        "id": "106"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/107.png",
+        "type": "dog",
+        "hero": "mercy",
+        "id": "107"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/108.png",
+        "type": "cat",
+        "hero": "ana",
+        "id": "108"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/109.png",
+        "type": "dog",
+        "hero": "reinhardt",
+        "id": "109"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/110.png",
+        "type": "guinea pig",
+        "hero": "sombra",
+        "id": "110"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/111.png",
+        "type": "cat",
+        "hero": "lucio",
+        "id": "111"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/112.png",
+        "type": "dog",
+        "hero": "widowmaker tracer",
+        "id": "112"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/113.png",
+        "type": "dog",
+        "hero": "venture",
+        "id": "113"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/114.png",
+        "type": "cat",
+        "hero": "mercy",
+        "id": "114"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/115.png",
+        "type": "parrot",
+        "hero": "genji",
+        "id": "115"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/116.png",
+        "type": "cat",
+        "hero": "lifeweaver",
+        "id": "116"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/117.png",
+        "type": "dog",
+        "hero": "dva",
+        "id": "117"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/118.png",
+        "type": "cat",
+        "hero": "cassidy",
+        "id": "118"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/119.png",
+        "type": "cat",
+        "hero": "roadhog",
+        "id": "119"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/120.png",
+        "type": "dog",
+        "hero": "ana",
+        "id": "120"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/121.png",
+        "type": "cat",
+        "hero": "junkrat",
+        "id": "121"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/122.png",
+        "type": "cat",
+        "hero": "baptiste",
+        "id": "122"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/123.png",
+        "type": "cat",
+        "hero": "sombra",
+        "id": "123"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/124.png",
+        "type": "cat",
+        "hero": "torbjorn",
+        "id": "124"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/125.png",
+        "type": "cat",
+        "hero": "kiriko",
+        "id": "125"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/126.png",
+        "type": "dog",
+        "hero": "hazard",
+        "id": "126"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/127.png",
+        "type": "cat",
+        "hero": "roadhog",
+        "id": "127"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/128.png",
+        "type": "cat",
+        "hero": "sigma",
+        "id": "128"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/129.png",
+        "type": "parrot",
+        "hero": "bastion",
+        "id": "129"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/130.png",
+        "type": "ferret",
+        "hero": "mauga",
+        "id": "130"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/131.png",
+        "type": "cat",
+        "hero": "ramattra",
+        "id": "131"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/132.png",
+        "type": "dog",
+        "hero": "winston",
+        "id": "132"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/133.png",
+        "type": "cat",
+        "hero": "cassidy",
+        "id": "133"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/134.png",
+        "type": "cat",
+        "hero": "ana",
+        "id": "134"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/135.png",
+        "type": "dog",
+        "hero": "dva",
+        "id": "135"
+    },
+    {
+        "img": "https://raw.githubusercontent.com/ThaiDuongVu/overpets/refs/heads/main/public/data/136.png",
+        "type": "dog",
+        "hero": "doomfist",
+        "id": "136"
     }
 ]

@@ -50,11 +50,11 @@ const Pets = () => {
         setFilteredPets(pets);
         // Filter pet type
         if (petTypeFilter != "all")
-          setFilteredPets(filteredPets.filter((pet: Pet) => pet.type === petTypeFilter));
+          setFilteredPets(filteredPets.filter((pet: Pet) => pet.type.includes(petTypeFilter)));
 
         // Filter hero
         if (heroFilter != "all")
-          setFilteredPets(filteredPets.filter((pet: Pet) => pet.hero === heroFilter));
+          setFilteredPets(filteredPets.filter((pet: Pet) => pet.hero.includes(heroFilter)));
 
         // Split filtered data into rows
         let rows = []
@@ -196,6 +196,7 @@ const Pets = () => {
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("chicken") }}>Chicken</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("dog") }}>Dog</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("ferret") }}>Ferret</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("guinea pig") }}>Guinea Pig</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("hamster") }}>Hamster</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("hedgehog") }}>Hedgehog</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("horse") }}>Horse</button></li>
