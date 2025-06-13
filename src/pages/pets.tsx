@@ -181,6 +181,8 @@ const Pets = () => {
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("horse") }}>Horse</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("lizzard") }}>Lizzard</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("rabbit") }}>Rabbit</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("raccoon") }}>Raccoon</button></li>
+                <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("parrot") }}>Parrot</button></li>
                 <li><button type="button" className="dropdown-item" onClick={() => { setPetTypeFilter("turtle") }}>Turtle</button></li>
               </ul>
             </div>
