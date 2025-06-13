@@ -28,7 +28,7 @@
         "img": "/heroes/doomfist.png"
     },
     {
-        "name": "D.Va",
+        "name": "DVa",
         "img": "/heroes/dva.png"
     },
     {
@@ -128,7 +128,7 @@
         "img": "/heroes/sojourn.png"
     },
     {
-        "name": "Soldier: 76",
+        "name": "Soldier 76",
         "img": "/heroes/soldier 76.png"
     },
     {
@@ -140,7 +140,7 @@
         "img": "/heroes/symmetra.png"
     },
     {
-        "name": "Torbjörn",
+        "name": "Torbjorn",
         "img": "/heroes/torbjorn.png"
     },
     {
