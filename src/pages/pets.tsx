@@ -6,6 +6,8 @@ import Toast from "@/components/toast";
 import { showToast } from "@/helper";
 import Image from "next/image";
 import { Pet } from "@/pet";
+import PetCard from "@/components/pet-card";
+import PetsGrid from "@/components/pet-grid";
 
 const Pets = () => {
   let bootstrap: NodeJS.Require;
@@ -60,40 +62,14 @@ const Pets = () => {
           rows.push(slicedPets.slice(i, i + rowSize));
         };
         setPetRows(rows);
-      });
+      })
+      .catch(error => { console.error("Error fetching pet data:", error); });
   }, [pets, petRows]);
 
   const addToFavorites = (pet: Pet) => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") ?? "[]");
+    localStorage.setItem("favorites", JSON.stringify([...favorites, pet.id]));
     showToast(bootstrap, "addToast");
-  };
-
-  const petCard = (pet: Pet) => {
-    if (!pet) return (
-      <Spinner />
-    );
-
-    return (
-      <div className="card mb-2" key={pet.id}>
-        <img src={pet.img} className="card-img-top border-bottom bg-info-subtle" alt="Pet" />
-        <div className="card-body">
-          <h5 className="card-title text-capitalize">{pet.type}</h5>
-          <p className="card-text text-capitalize">{pet.hero}</p>
-          <a
-            type="button"
-            className="btn btn-primary pe-4 ps-4 me-2"
-            href={pet.img} download={true} target="_blank"
-            title="Download">
-            <i className="bi bi-download"></i>
-          </a>
-          <a
-            type="button"
-            className="btn btn-danger pe-4 ps-4"
-            onClick={() => { addToFavorites(pet) }}>
-            <i className="bi bi-heart-fill"></i>
-          </a>
-        </div>
-      </div>
-    );
   };
 
   const paginationDisplay = () => {
@@ -136,20 +112,6 @@ const Pets = () => {
         </ul>
       </nav>
     )
-  };
-
-  const getPetsAsGrid = () => {
-    if (pets.length === 0) return <Spinner />
-
-    return (
-      petRows.map((row, index) => {
-        return (
-          <div className="card-group" key={index}>
-            {row.map(pet => petCard(pet))}
-          </div>
-        )
-      })
-    );
   };
 
   return (
@@ -243,8 +205,8 @@ const Pets = () => {
         </div>
         <br />
 
-        {/* Pet Display */}
-        {getPetsAsGrid()}
+        {/* Pet grid */}
+        {PetsGrid({ petRows, addToFavorites })}
         <br />
 
         {/* Pagination */}

@@ -5,6 +5,7 @@ import Toast from "@/components/toast";
 import { randomInt, showToast } from "@/helper";
 import { Pet } from "@/pet";
 import Spinner from "@/components/spinner";
+import PetCard from "@/components/pet-card";
 
 const Random = () => {
   let bootstrap: NodeJS.Require;
@@ -14,6 +15,7 @@ const Random = () => {
   });
 
   const [pets, setPets] = useState([]);
+  const [pet, setPet] = useState<Pet>();
   const [petIndex, setPetIndex] = useState(0);
 
   // Fetch pet data
@@ -22,45 +24,19 @@ const Random = () => {
       .then(response => response.json())
       .then(data => {
         setPets(data);
-        setPetIndex(randomInt(0, data.length));
+        setPet(pets[randomInt(0, data.length)]);
       });
   }, []);
 
   const shuffle = () => {
     setPetIndex(randomInt(0, pets.length));
+    setPet(pets[petIndex]);
   };
 
   const addToFavorites = (pet: Pet) => {
+    let favorites = JSON.parse(localStorage.getItem("favorites") ?? "[]");
+    localStorage.setItem("favorites", JSON.stringify([...favorites, pet.id]));
     showToast(bootstrap, "addToast");
-  };
-
-  const petCard = (pet: Pet) => {
-    if (!pet) return (
-      <Spinner />
-    );
-
-    return (
-      <div className="card" key={pet.id}>
-        <img src={pet.img} className="card-img-top border-bottom bg-info-subtle" alt="Pet" />
-        <div className="card-body">
-          <h5 className="card-title text-capitalize">{pet.type}</h5>
-          <p className="card-text text-capitalize">{pet.hero}</p>
-          <a
-            type="button"
-            className="btn btn-primary pe-4 ps-4 me-2"
-            href={pet.img} download={true} target="_blank"
-            title="Download">
-            <i className="bi bi-download"></i>
-          </a>
-          <a
-            type="button"
-            className="btn btn-danger pe-4 ps-4"
-            onClick={() => { addToFavorites(pet) }}>
-            <i className="bi bi-heart-fill"></i>
-          </a>
-        </div>
-      </div>
-    );
   };
 
   return (
@@ -76,7 +52,7 @@ const Random = () => {
         {/* Main card */}
         <div className="row">
           <div className="col">
-            {petCard(pets[petIndex])}
+            {PetCard({ pet, addToFavorites })}
           </div>
         </div>
         <br />
