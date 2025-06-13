@@ -98,7 +98,7 @@ const Pets = () => {
 
   const paginationDisplay = () => {
     const firstPage = 0;
-    const lastPage = 9;
+    const lastPage = 13;
     const pages = [];
     for (let i = 0; i < lastPage; i++) pages.push(i);
 

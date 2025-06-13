@@ -28,7 +28,7 @@ const Home = () => {
             imgIndex.map((index) => {
               return (
                 <div className="col" key={index}>
-                  <Image src={`/data/${randomInt(1, 136)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded border bg-info-subtle" />
+                  <Image src={`/data/${randomInt(1, 199)}.png`} width={250} height={100} unoptimized={true} alt="icon" className="img-fluid rounded border bg-info-subtle" />
                 </div>
               );
             })
