@@ -1,0 +1,170 @@
+[
+    {
+        "name": "Ana",
+        "img": "/heroes/ana.png"
+    },
+    {
+        "name": "Ashe",
+        "img": "/heroes/ashe.png"
+    },
+    {
+        "name": "Baptiste",
+        "img": "/heroes/baptiste.png"
+    },
+    {
+        "name": "Bastion",
+        "img": "/heroes/bastion.png"
+    },
+    {
+        "name": "Brigitte",
+        "img": "/heroes/brigitte.png"
+    },
+    {
+        "name": "Cassidy",
+        "img": "/heroes/cassidy.png"
+    },
+    {
+        "name": "Doomfist",
+        "img": "/heroes/doomfist.png"
+    },
+    {
+        "name": "D.Va",
+        "img": "/heroes/dva.png"
+    },
+    {
+        "name": "Echo",
+        "img": "/heroes/echo.png"
+    },
+    {
+        "name": "Freja",
+        "img": "/heroes/freja.png"
+    },
+    {
+        "name": "Genji",
+        "img": "/heroes/genji.png"
+    },
+    {
+        "name": "Hanzo",
+        "img": "/heroes/hanzo.png"
+    },
+    {
+        "name": "Hazard",
+        "img": "/heroes/hazard.png"
+    },
+    {
+        "name": "Illari",
+        "img": "/heroes/illari.png"
+    },
+    {
+        "name": "Junker Queen",
+        "img": "/heroes/junker queen.png"
+    },
+    {
+        "name": "Junkrat",
+        "img": "/heroes/junkrat.png"
+    },
+    {
+        "name": "Juno",
+        "img": "/heroes/juno.png"
+    },
+    {
+        "name": "Kiriko",
+        "img": "/heroes/kiriko.png"
+    },
+    {
+        "name": "Lifeweaver",
+        "img": "/heroes/lifeweaver.png"
+    },
+    {
+        "name": "Lucio",
+        "img": "/heroes/lucio.png"
+    },
+    {
+        "name": "Mauga",
+        "img": "/heroes/mauga.png"
+    },
+    {
+        "name": "Mei",
+        "img": "/heroes/mei.png"
+    },
+    {
+        "name": "Mercy",
+        "img": "/heroes/mercy.png"
+    },
+    {
+        "name": "Moira",
+        "img": "/heroes/moira.png"
+    },
+    {
+        "name": "Orisa",
+        "img": "/heroes/orisa.png"
+    },
+    {
+        "name": "Pharah",
+        "img": "/heroes/pharah.png"
+    },
+    {
+        "name": "Ramattra",
+        "img": "/heroes/ramattra.png"
+    },
+    {
+        "name": "Reaper",
+        "img": "/heroes/reaper.png"
+    },
+    {
+        "name": "Reinhardt",
+        "img": "/heroes/reinhardt.png"
+    },
+    {
+        "name": "Roadhog",
+        "img": "/heroes/roadhog.png"
+    },
+    {
+        "name": "Sigma",
+        "img": "/heroes/sigma.png"
+    },
+    {
+        "name": "Sojourn",
+        "img": "/heroes/sojourn.png"
+    },
+    {
+        "name": "Soldier: 76",
+        "img": "/heroes/soldier 76.png"
+    },
+    {
+        "name": "Sombra",
+        "img": "/heroes/sombra.png"
+    },
+    {
+        "name": "Symmetra",
+        "img": "/heroes/symmetra.png"
+    },
+    {
+        "name": "Torbjörn",
+        "img": "/heroes/torbjorn.png"
+    },
+    {
+        "name": "Tracer",
+        "img": "/heroes/tracer.png"
+    },
+    {
+        "name": "Widowmaker",
+        "img": "/heroes/widowmaker.png"
+    },
+    {
+        "name": "Winston",
+        "img": "/heroes/winston.png"
+    },
+    {
+        "name": "Wrecking Ball",
+        "img": "/heroes/wrecking ball.png"
+    },
+    {
+        "name": "Zarya",
+        "img": "/heroes/zarya.png"
+    },
+    {
+        "name": "Zenyatta",
+        "img": "/heroes/zenyatta.png"
+    }
+]

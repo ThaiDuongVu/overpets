@@ -1,13 +1,16 @@
 import { Pet } from "@/pet";
 import Spinner from "./spinner";
 
-const PetCard = ({pet, addToFavorites} : {pet: Pet | undefined, addToFavorites: Function}) => {
+export type AddToFavoritesFunction = (pet: Pet) => void;
+
+const PetCard = ({ pet, addToFavorites }: { pet: Pet | undefined, addToFavorites: AddToFavoritesFunction }) => {
   if (!pet) return (
     <Spinner />
   );
 
   return (
     <div className="card mb-2" key={pet.id}>
+      {/* eslint-disable */}
       <img src={pet.img} className="card-img-top border-bottom bg-info-subtle" alt="Pet" />
       <div className="card-body">
         <h5 className="card-title text-capitalize">{pet.type}</h5>

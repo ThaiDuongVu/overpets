@@ -1,12 +1,11 @@
 import NavBar from "@/components/navbar";
 import { useEffect, useState } from "react";
 import RootLayout from "@/components/layout";
-import Spinner from "@/components/spinner";
 import Toast from "@/components/toast";
 import { showToast } from "@/helper";
 import Image from "next/image";
 import { Pet } from "@/pet";
-import PetCard from "@/components/pet-card";
+import { Hero } from "@/hero";
 import PetsGrid from "@/components/pet-grid";
 
 const Pets = () => {
@@ -114,6 +113,16 @@ const Pets = () => {
     )
   };
 
+  const [heroes, setHeroes] = useState([]);
+  useEffect(() => {
+    fetch("./heroes.json")
+      .then(response => response.json())
+      .then(data => {
+        setHeroes(data);
+      })
+      .catch(error => { console.error("Error fetching hero data:", error); });
+  }, [heroes]);
+
   return (
     <RootLayout>
       <NavBar activePage="pets" />
@@ -155,50 +164,18 @@ const Pets = () => {
                 Hero <i className="bi bi-person-fill"></i>
               </button>
               <ul className="dropdown-menu">
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("all") }}>All <i className="bi bi-eye-fill"></i></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ana") }}>Ana <Image src="/heroes/ana.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ashe") }}>Ashe <Image src="/heroes/ashe.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("baptiste") }}>Baptiste <Image src="/heroes/baptiste.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("bastion") }}>Bastion <Image src="/heroes/bastion.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("brigitte") }}>Brigitte <Image src="/heroes/brigitte.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("cassidy") }}>Cassidy <Image src="/heroes/cassidy.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("doomfist") }}>Doomfist <Image src="/heroes/doomfist.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("dva") }}>Dva <Image src="/heroes/dva.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("echo") }}>Echo <Image src="/heroes/echo.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("freja") }}>Freja <Image src="/heroes/freja.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("genji") }}>Genji <Image src="/heroes/genji.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("hanzo") }}>Hanzo <Image src="/heroes/hanzo.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("hazard") }}>Hazard <Image src="/heroes/hazard.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("illari") }}>Illari <Image src="/heroes/illari.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("junker queen") }}>Junker Queen <Image src="/heroes/junker queen.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("junkrat") }}>Junkrat <Image src="/heroes/junkrat.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("juno") }}>Juno <Image src="/heroes/juno.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("kiriko") }}>Kiriko <Image src="/heroes/kiriko.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("lifeweaver") }}>Lifeweaver <Image src="/heroes/lifeweaver.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("lucio") }}>Lucio <Image src="/heroes/lucio.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mauga") }}>Mauga <Image src="/heroes/mauga.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mei") }}>Mei <Image src="/heroes/mei.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("mercy") }}>Mercy <Image src="/heroes/mercy.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("moira") }}>Moira <Image src="/heroes/moira.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("orisa") }}>Orisa <Image src="/heroes/orisa.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("pharah") }}>Pharah <Image src="/heroes/pharah.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("ramattra") }}>Ramattra <Image src="/heroes/ramattra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("reaper") }}>Reaper <Image src="/heroes/reaper.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("reinhardt") }}>Reinhardt <Image src="/heroes/reinhardt.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("roadhog") }}>Roadhog <Image src="/heroes/roadhog.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sigma") }}>Sigma <Image src="/heroes/sigma.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sojourn") }}>Sojourn <Image src="/heroes/sojourn.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("soldier 76") }}>Soldier 76 <Image src="/heroes/soldier 76.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("sombra") }}>Sombra <Image src="/heroes/sombra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("symmetra") }}>Symmetra <Image src="/heroes/symmetra.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("torbjorn") }}>Torbjorn <Image src="/heroes/torbjorn.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("tracer") }}>Tracer <Image src="/heroes/tracer.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("venture") }}>Venture <Image src="/heroes/venture.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("widowmaker") }}>Widowmaker <Image src="/heroes/widowmaker.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("winston") }}>Winston <Image src="/heroes/winston.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("wrecking ball") }}>Wrecking Ball <Image src="/heroes/wrecking ball.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("zarya") }}>Zarya <Image src="/heroes/zarya.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
-                <li><button type="button" className="dropdown-item" onClick={() => { setHeroFilter("zenyatta") }}>Zenyatta <Image src="/heroes/zenyatta.png" width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button></li>
+                <li>
+                  <button type="button" className="dropdown-item" onClick={() => { setHeroFilter("all") }}>All <i className="bi bi-eye-fill"></i></button>
+                </li>
+                {
+                  heroes.map((hero: Hero) => {
+                    return (
+                      <li key={hero.name.toLowerCase()}>
+                        <button type="button" className="dropdown-item" onClick={() => { setHeroFilter(hero.name.toLowerCase()) }}>{hero.name} <Image src={hero.img} width={20} height={20} unoptimized={true} alt="icon" className="img-fluid rounded ms-2" /></button>
+                      </li>
+                    )
+                  })
+                }
               </ul>
             </div>
           </div>

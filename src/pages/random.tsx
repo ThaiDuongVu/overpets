@@ -4,7 +4,6 @@ import RootLayout from "@/components/layout";
 import Toast from "@/components/toast";
 import { randomInt, showToast } from "@/helper";
 import { Pet } from "@/pet";
-import Spinner from "@/components/spinner";
 import PetCard from "@/components/pet-card";
 
 const Random = () => {
